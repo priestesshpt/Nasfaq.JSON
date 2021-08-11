@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nasfaq.JSON.SubJSON;
+using Nasfaq.JSON.ChildJSON;
 
 namespace Nasfaq
 {
@@ -121,8 +121,13 @@ namespace Nasfaq
 
         #region Buy/Sell Coin
         //api/buyCoin
+        public class BuyCoin
+        {
+            public string coin { get; set; }
+        }
+
         //api/sellCoin
-        public class TradeCoin
+        public class SellCoin
         {
             public string coin { get; set; }
         }
@@ -142,7 +147,7 @@ namespace Nasfaq
             public WSCoinPriceUpdateInfo info { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class WSCoinPriceUpdateInfo
             {
@@ -162,7 +167,7 @@ namespace Nasfaq
             public WSTodayPriceStamp priceStamp { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class WSTodayPriceStamp
             {
@@ -177,7 +182,7 @@ namespace Nasfaq
         {
             public string @event { get; set; }
             public Transaction[] transactions { get; set; }
-            public Wallet wallet { get; set; }
+            public UserWallet wallet { get; set; }
         }
 
         //gachaUpdate
@@ -192,10 +197,10 @@ namespace Nasfaq
         #region GetUserWallet
 
         //api/getUserWallet?userid=id
-        public class APIGetUserWallet
+        public class GetUserWallet
         {
             public bool success { get; set; }
-            public Wallet wallet { get; set; }
+            public UserWallet wallet { get; set; }
         }
 
         #endregion
@@ -211,7 +216,7 @@ namespace Nasfaq
             public string email  { get; set; }
             public UserPerformanceTick[] performance { get; set; }
             public bool verified { get; set; }
-            public Wallet wallet { get; set; }
+            public UserWallet wallet { get; set; }
             public string icon { get; set; }
             public bool admin { get; set; }
             public UserSettings settings { get; set; }
@@ -219,10 +224,10 @@ namespace Nasfaq
             public Dictionary<string, UserItems> items { get; set; }
         }
 
-        public class Wallet
+        public class UserWallet
         {
             public double balance { get; set; }
-            public Dictionary<string, WalletCoin> coins { get; set; }
+            public Dictionary<string, UserWalletCoin> coins { get; set; }
             public string predicted { get; set; }
         }
 
@@ -232,7 +237,7 @@ namespace Nasfaq
             public bool walletIsPublic { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class UserPerformanceTick
             {
@@ -240,7 +245,7 @@ namespace Nasfaq
                 public double worth { get; set; }
             }
 
-            public class WalletCoin
+            public class UserWalletCoin
             {
                 public int amt { get; set; }
                 public long timestamp { get; set; }
@@ -269,7 +274,7 @@ namespace Nasfaq
         #region SetIcon
 
         //api/setIcon
-        public class APISetIcon
+        public class SetIcon
         {
             public string icon { get; set; }
         }
@@ -279,7 +284,7 @@ namespace Nasfaq
         #region ChangeUsername
 
         //api/changeUsername
-        public class APIChangeUsername
+        public class ChangeUsername
         {
             public string username { get; set; }
         }
@@ -289,7 +294,7 @@ namespace Nasfaq
         #region ChangeEmail
 
         //api/changeEmail
-        public class APIChangeEmail
+        public class ChangeEmail
         {
             public string email { get; set; }
         }
@@ -300,11 +305,11 @@ namespace Nasfaq
         //api/getLeaderboard
         public class GetLeaderboard
         {
-            public SubJSON.Leaderboard leaderboard {get; set;}
-            public SubJSON.Oshiboard oshiboard {get; set;}
+            public ChildJSON.Leaderboard leaderboard {get; set;}
+            public ChildJSON.Oshiboard oshiboard {get; set;}
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class Leaderboard
             {
@@ -347,10 +352,10 @@ namespace Nasfaq
         //api/getGachaboard
         public class GetGachaboard
         {
-            public SubJSON.GachaboardPlayer[] gachaboard { get; set; }
+            public ChildJSON.GachaboardPlayer[] gachaboard { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class GachaboardPlayer
             {
@@ -370,7 +375,7 @@ namespace Nasfaq
             public ItemCatalogueEntry[] catalogue { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class ItemCatalogueEntry
             {
@@ -383,17 +388,7 @@ namespace Nasfaq
 
         #endregion
 
-        #region TransactionArchive
-        public class Archive
-        {
-            public History[] archive { get; set; }
-        }
-
-        public class History
-        {
-            public long timestamp { get; set; }
-            public Transaction[] transactions { get; set; }
-        }
+        #region Transaction
 
         public class Transaction
         {
@@ -404,6 +399,25 @@ namespace Nasfaq
             public bool completed { get; set; }
             public float price { get; set; }
         }
+
+        #endregion
+
+        #region GetAllArchivedHistory
+        //https://anonfiles.com/F4IdAd7eue/getAllArchivedHistory_json
+        public class GetAllArchivedHistory
+        {
+            public ArchiveHistory[] archive { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class ArchiveHistory
+            {
+                public long timestamp { get; set; }
+                public Transaction[] transactions { get; set; }
+            }
+        }
+
         #endregion
         
         #region MarketInfo
@@ -411,13 +425,13 @@ namespace Nasfaq
         //api/getMarketInfo
         public class GetMarketInfo
         {
-            public SubJSON.CoinsInfo coinInfo { get; set; }
+            public ChildJSON.MarketCoinsInfo coinInfo { get; set; }
             public bool marketSwitch { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
-            public class CoinsInfo
+            public class MarketCoinsInfo
             {
                 public Dictionary<string, CoinInfo> data { get; set; }
                 public long timestamp { get; set; }
@@ -429,10 +443,10 @@ namespace Nasfaq
                 public double price { get; set; }
                 public double saleValue { get; set; }
                 public int inCirculation { get; set; }
-                public CoinHistoryTick[] history { get; set; }
+                public CoinInfoHistoryTick[] history { get; set; }
             }
 
-            public class CoinHistoryTick
+            public class CoinInfoHistoryTick
             {
                 public long timestamp { get; set; }
                 public double price { get; set; }
@@ -447,10 +461,10 @@ namespace Nasfaq
         public class GetDividends
         {
             public bool success { get; set; }
-            public SubJSON.Dividends dividends { get; set; }
+            public ChildJSON.Dividends dividends { get; set; }
 
         }
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class Dividends
             {
@@ -463,11 +477,11 @@ namespace Nasfaq
         #region Stats
 
         //api/getStats
-        public class APIGetStats
+        public class GetStats
         {   
-            Dictionary<string, SubJSON.Stats> stats { get; set; }
+            Dictionary<string, ChildJSON.Stats> stats { get; set; }
         }
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class Stats
             {
@@ -499,7 +513,7 @@ namespace Nasfaq
             public Dictionary<string, SuperchatHistory> history { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {   
             public class SuperchatDaily
             {
@@ -537,13 +551,13 @@ namespace Nasfaq
         #region News
 
         //api/getNews
-        public class APIGetNews
+        public class GetNews
         {
             public bool success { get; set; }
             public News[] news { get; set; } 
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class News
             {
@@ -557,13 +571,13 @@ namespace Nasfaq
         #region Announcement
 
         //api/getAnnouncement
-        public class APIGetAnnouncement
+        public class GetAnnouncement
         {
             public bool success { get; set; }
             public Announcement announcement { get; set; }
         }
 
-        namespace SubJSON
+        namespace ChildJSON
         {
             public class Announcement
             {
