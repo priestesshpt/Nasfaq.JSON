@@ -9,24 +9,13 @@ namespace Nasfaq
         #region APIs
         /*
         /destroySession
-        /getHistory
-        /addRoom
-        /deleteMessage
-        /addReport
-        /addMessage
-        /removeRoom
-        /getChatLog
-        /getFloor
         /getCooldown
-        /updateUserMuted
         /updateFilters
-        /deleteReport
-        /deleteMessage
         /buySuperchat
         /getSuperchats
         */
-
-        //Not doing
+        
+        //Not doing unless I can deal with the captcha
         /*
         /deleteOwnAccount
         /login
@@ -45,6 +34,11 @@ namespace Nasfaq
         /getAdminInfo
         /setMarketSwitch
         /loginAdmin
+        /deleteReport
+        /deleteMessage
+        /deleteMessage
+        /updateUserMuted
+        /removeRoom
         */
         #endregion
 
@@ -190,6 +184,45 @@ namespace Nasfaq
         {
             public string[] drops { get; set; }
             public int cashDrops { get; set; }
+        }
+
+        //floorUpdate
+        public class WSFloorUpdate
+        {
+            public int postCount { get; set; }
+            public FloorUpdateRoom[] rooms { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class FloorUpdateRoom
+            {
+                public string id { get; set; }
+                public long timestamp { get; set; }
+                public string subject { get; set; }
+                public string opening { get; set; }
+                public string creator { get; set; }
+                public int posts { get; set; }
+                public string[] posters { get; set; }
+            }
+        }
+
+        //roomUpdate
+        public class WSRoomUpdate
+        {
+            public RoomUpdate[] roomUpdate { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class RoomUpdate
+            {
+                public int id { get; set; }
+                public long timestamp { get; set; }
+                public string username { get; set; }
+                public string text { get; set; }
+                public int[] mentions { get; set; }
+            }
         }
 
         #endregion
@@ -402,20 +435,32 @@ namespace Nasfaq
 
         #endregion
 
-        #region GetAllArchivedHistory
-        //https://anonfiles.com/F4IdAd7eue/getAllArchivedHistory_json
-        public class GetAllArchivedHistory
+        #region GetHistory
+
+        //api/getHistory
+        //api/getHistory?timestamp={date timestamp in ms}
+        public class GetHistory
         {
-            public ArchiveHistory[] archive { get; set; }
+            bool success { get; set; }
+
         }
 
         namespace ChildJSON
         {
-            public class ArchiveHistory
+            public class History
             {
                 public long timestamp { get; set; }
                 public Transaction[] transactions { get; set; }
             }
+        }
+
+        #endregion
+
+        #region GetAllArchivedHistory
+        //https://anonfiles.com/F4IdAd7eue/getAllArchivedHistory_json
+        public class GetAllArchivedHistory
+        {
+            public History[] archive { get; set; }
         }
 
         #endregion
@@ -587,5 +632,103 @@ namespace Nasfaq
         }
 
         #endregion
+    
+        #region AddRoom
+
+        //api/addRoom
+        public class AddRoom
+        {
+            public string subject { get; set; }
+            public string openingText { get; set; }
+        }
+
+        #endregion
+
+        #region AddMessage
+
+        //api/addMessage
+        public class AddMessage
+        {
+            public string room { get; set; }
+            public string text { get; set; }
+        }
+
+        #endregion
+
+        #region AddReport
+
+        //api/addReport
+        public class AddReport
+        {
+            public Report report { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class Report
+            {
+                public ReportMessage message { get; set; }
+            }
+
+            public class ReportMessage
+            {
+                public int id { get; set; }
+                public string roomId { get; set; }
+                public string text { get; set; }
+                public long timestamp { get; set; }
+                public string username { get; set; }
+            }
+        }
+
+        #endregion
+        
+        #region GetChatLog
+
+        //api/getChatLog
+        //api/getChatLog?room={roomid}
+        public class GetChatLog
+        {
+            public ChatLogEntry[] chatLog { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class ChatLogEntry
+            {
+                public int id { get; set; }
+                public long timestamp { get; set; }
+                public string username { get; set; }
+                public string text { get; set; }
+                public string[] mentions { get; set; }
+            }
+        }
+
+        #endregion
+
+        #region GetFloor
+
+        //api/getFloor
+        public class GetFloor
+        {
+            public int postCount { get; set; }
+            public FloorRoom rooms { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class FloorRoom
+            {
+                public string id { get; set; }
+                public long timestamp { get; set; }
+                public string subject { get; set; }
+                public string opening { get; set; }
+                public string creator { get; set; }
+                public int posts { get; set; }
+                public string[] posters { get; set; }
+            }
+        }
+
+        #endregion
+
     }
 }
