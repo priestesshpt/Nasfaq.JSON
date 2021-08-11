@@ -302,7 +302,6 @@ namespace Nasfaq
         {
             public SubJSON.Leaderboard leaderboard {get; set;}
             public SubJSON.Oshiboard oshiboard {get; set;}
-            public SubJSON.GachaboardPlayer gachaboard { get; set; }
         }
 
         namespace SubJSON
@@ -340,7 +339,19 @@ namespace Nasfaq
                 public string icon { get; set; }
                 public int amtOwned { get; set; }
             }
+        }
 
+        #endregion
+
+        #region GetGachaboard
+        //api/getGachaboard
+        public class GetGachaboard
+        {
+            public SubJSON.GachaboardPlayer[] gachaboard { get; set; }
+        }
+
+        namespace SubJSON
+        {
             public class GachaboardPlayer
             {
                 public string username { get; set; }
