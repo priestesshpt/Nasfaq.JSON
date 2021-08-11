@@ -489,6 +489,51 @@ namespace Nasfaq
 
         #endregion
     
+        #region GetSuperchats
+
+        //api/getSuperchats
+        public class GetSuperchats
+        {
+            public bool success { get; set; }
+            public Dictionary<string, SuperchatDaily> daily { get; set; }
+            public Dictionary<string, SuperchatHistory> history { get; set; }
+        }
+
+        namespace SubJSON
+        {   
+            public class SuperchatDaily
+            {
+                public double total { get; set; }
+                public Dictionary<string, SuperchatUserTotal> userTotals { get; set; }
+            }
+
+            public class SuperchatUserTotal
+            {
+                public string username { get; set; }
+                public double total { get; set; }
+            }
+
+            public class SuperchatHistory
+            {
+                public string coin { get; set; }
+                public double total { get; set; }
+                public Superchat[] superchats { get; set; }
+            }
+
+            public class Superchat
+            {
+                public string coin { get; set; }
+                public string userid { get; set; }
+                public string username { get; set; }
+                public string usericon { get; set; }
+                public long timestamp { get; set; }
+                public long expiration { get; set; }
+                public string message { get; set; }
+            }
+        }
+
+        #endregion
+
         #region News
 
         //api/getNews
