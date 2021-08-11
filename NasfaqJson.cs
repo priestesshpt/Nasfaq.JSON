@@ -361,6 +361,28 @@ namespace Nasfaq
 
         #endregion
 
+        #region GetItemCatalogue
+
+        //api/getCatalogue
+        public class GetItemCatalogue
+        {
+            public bool success { get; set; }
+            public ItemCatalogueEntry[] catalogue { get; set; }
+        }
+
+        namespace SubJSON
+        {
+            public class ItemCatalogueEntry
+            {
+                public string name { get; set; }
+                public string description { get; set; }
+                public string modifier { get; set; }
+                public double modifierMult { get; set; }
+            }
+        }
+
+        #endregion
+
         #region TransactionArchive
         public class Archive
         {
