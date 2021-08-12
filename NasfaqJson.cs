@@ -7,11 +7,6 @@ namespace Nasfaq
     namespace JSON
     {
         #region APIs
-        /*
-        /destroySession
-        
-        /updateFilters
-        */
         
         //Not doing unless I can deal with the captcha
         /*
@@ -37,6 +32,7 @@ namespace Nasfaq
         /deleteMessage
         /updateUserMuted
         /removeRoom
+        /updateFilters
         */
         #endregion
 
@@ -756,6 +752,16 @@ namespace Nasfaq
                 public long post { get; set; }
                 public long superchat { get; set; }
             }
+        }
+
+        #endregion
+
+        #region DestroySession
+
+        //api/destroySession
+        public class DestroySession
+        {
+            public bool success { get; set; }
         }
 
         #endregion
