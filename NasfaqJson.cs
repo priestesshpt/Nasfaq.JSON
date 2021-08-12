@@ -9,10 +9,8 @@ namespace Nasfaq
         #region APIs
         /*
         /destroySession
-        /getCooldown
+        
         /updateFilters
-        /buySuperchat
-        /getSuperchats
         */
         
         //Not doing unless I can deal with the captcha
@@ -593,6 +591,18 @@ namespace Nasfaq
 
         #endregion
 
+        #region BuySuperchat
+
+        //api/buySuperchat
+        public class BuySuperchat
+        {
+            public double amount { get; set; }
+            public string coin { get; set; }
+            public string message { get; set; }
+        }
+
+        #endregion
+
         #region News
 
         //api/getNews
@@ -725,6 +735,26 @@ namespace Nasfaq
                 public string creator { get; set; }
                 public int posts { get; set; }
                 public string[] posters { get; set; }
+            }
+        }
+
+        #endregion
+
+        #region GetCooldown
+        
+        //api/getCooldown
+        public class GetCooldown
+        {
+            public Cooldown cooldown { get; set; }
+        }
+
+        namespace ChildJSON
+        {
+            public class Cooldown
+            {
+                public long room { get; set; }
+                public long post { get; set; }
+                public long superchat { get; set; }
             }
         }
 
