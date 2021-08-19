@@ -37,6 +37,7 @@ namespace Nasfaq.JSON
         public string usericon { get; set; }
         public long timestamp { get; set; }
         public long expiration { get; set; }
+        public double amount { get; set; }
         public string message { get; set; }
     }
 }

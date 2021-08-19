@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //dividendUpdate
-    public class WSDividendUpdate
+    public class WSDividendUpdate : IWebsocket
     {
         public UserWallet wallet;
     }

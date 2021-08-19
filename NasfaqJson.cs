@@ -33,6 +33,9 @@ namespace Nasfaq
         /removeRoom
         /updateFilters
         */
+
+        //getuseritems
+        //setUserLeaderboardColor/
         #endregion
 
 
@@ -40,9 +43,6 @@ namespace Nasfaq
 
         //statisticsUpdate
         //coinHistoryUpdate
-        
-        //oshiboardUpdate
-        //dividendUpdate
         //marketSwitch
         //itemsUpdate
 

@@ -6,6 +6,7 @@ namespace Nasfaq.JSON
     public class GetStats
     {   
         Dictionary<string, Stats> stats { get; set; }
+        Stats_CoinHistory[] coinHistory { get; set; }
     }
     
     public class Stats
@@ -21,7 +22,20 @@ namespace Nasfaq.JSON
     public class Stats_Data
     {
         public string name { get; set; }
-        public string[] labls { get; set; }
+        public string[] labels { get; set; }
         public int[] data { get; set; }
+    }
+
+    public class Stats_CoinHistory
+    {
+        public long timestamp { get; set; }
+        public Dictionary<string, Stats_CoinInfo> data { get; set; }
+    }
+
+    public class Stats_CoinInfo
+    {
+        public string coin { get; set; }
+        public double price { get; set; }
+        public int inCirculation { get; set; }
     }
 }

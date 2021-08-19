@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //roomUpdate
-    public class WSRoomUpdate
+    public class WSRoomUpdate : IWebsocket
     {
         public WSRoomUpdate_Update[] roomUpdate { get; set; }
     }

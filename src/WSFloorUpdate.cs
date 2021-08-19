@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //floorUpdate
-    public class WSFloorUpdate
+    public class WSFloorUpdate : IWebsocket
     {
         public int postCount { get; set; }
         public WSFloorUpdate_Room[] rooms { get; set; }
