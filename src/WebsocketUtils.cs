@@ -7,7 +7,7 @@ namespace Nasfaq.JSON
 {
     public static class WebsocketReader
     {
-        public static IWebsocket Read(string content)
+        public static IWebsocketData Read(string content)
         {
             content = content.Substring(2);
             JsonDocument jsonDocument = JsonDocument.Parse(content);
@@ -42,7 +42,7 @@ namespace Nasfaq.JSON
             return null;
         }
 
-        private static T ReadStandard<T>(JsonElement element)
+        private static T ReadStandard<T>(JsonElement element) where T : IWebsocketData
         {
             return JsonSerializer.Deserialize<T>(element.ToString());
         }
