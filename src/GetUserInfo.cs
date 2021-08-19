@@ -16,7 +16,7 @@ namespace Nasfaq.JSON
         public bool admin { get; set; }
         public UserInfo_Settings settings { get; set; }
         public UserInfo_Muted muted { get; set; }
-        public Dictionary<string, UserInfo_Item> items { get; set; }
+        public Dictionary<string, UserInfo_Item[]> items { get; set; }
     }
 
     //api/updateSettings
