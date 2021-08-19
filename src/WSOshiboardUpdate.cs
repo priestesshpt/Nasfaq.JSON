@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //oshiboardUpdate
-    public class WSOshiboardUpdate : IWebsocket
+    public class WSOshiboardUpdate : IWebsocketData
     {
         public Oshiboard oshiboard { get; set; }
     }

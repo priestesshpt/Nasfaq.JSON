@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //coinPriceUpdate
-    public class WSCoinPriceUpdate : IWebsocket
+    public class WSCoinPriceUpdate : IWebsocketData
     {
         public string coin { get; set; }
         public WSCoinPriceUpdate_Info info { get; set; }

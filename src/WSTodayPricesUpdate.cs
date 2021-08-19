@@ -1,7 +1,7 @@
 namespace Nasfaq.JSON
 {
     //todayPricesUpdate
-    public class WSTodayPricesUpdate : IWebsocket
+    public class WSTodayPricesUpdate : IWebsocketData
     {
         public string coin { get; set; }
         public WSTodayPricesUpdate_Stamp priceStamp { get; set; }
