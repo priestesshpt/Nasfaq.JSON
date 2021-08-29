@@ -9,7 +9,6 @@ namespace Nasfaq.JSON
     {
         public static IWebsocketData Read(string content)
         {
-            content = content.Substring(2);
             JsonDocument jsonDocument = JsonDocument.Parse(content);
             string websocketName = jsonDocument.RootElement[0].GetString();
             JsonElement jsonElement = jsonDocument.RootElement[1];

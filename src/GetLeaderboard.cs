@@ -5,6 +5,8 @@ namespace Nasfaq.JSON
     //api/getLeaderboard
     public class GetLeaderboard
     {
+        public bool success { get; set; } = true;
+        public string message { get; set; }
         public Leaderboard leaderboard { get; set; }
         public Oshiboard oshiboard { get; set; }
     }

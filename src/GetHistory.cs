@@ -4,8 +4,8 @@ namespace Nasfaq.JSON
     //api/getHistory?timestamp={date timestamp in ms}
     public class GetHistory
     {
-        bool success { get; set; }
-
+        public bool success { get; set; }
+        public History history { get; set; }
     }
 
     public class History
