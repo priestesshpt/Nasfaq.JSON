@@ -1,8 +1,8 @@
 namespace Nasfaq.JSON
 {
     //historyUpdate
-    public class WSHistoryUpdate : Transaction, IWebsocketData
+    public class WSHistoryUpdate : IWebsocketData
     {
-
+        public Transaction[] transactions { get; set; }
     }
 }

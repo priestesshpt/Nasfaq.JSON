@@ -21,7 +21,7 @@ namespace Nasfaq.JSON
                     case "dividendUpdate": return ReadDividendUpdate(jsonElement);
                     case "floorUpdate": return ReadStandard<WSFloorUpdate>(jsonElement);
                     case "gachaUpdate": return ReadStandard<WSGachaUpdate>(jsonElement);
-                    case "historyUpdate": return ReadStandard<WSHistoryUpdate>(jsonElement);
+                    case "historyUpdate": return ReadHistoryUpdate(jsonElement);
                     case "leaderboardUpdate": return ReadStandard<WSLeaderboardUpdate>(jsonElement);
                     case "oshiboardUpdate": return ReadOshiboardUpdate(jsonElement);
                     case "todayPricesUpdate": return ReadStandard<WSTodayPricesUpdate>(jsonElement);
@@ -49,6 +49,11 @@ namespace Nasfaq.JSON
         private static WSDividendUpdate ReadDividendUpdate(JsonElement element)
         {
             return new WSDividendUpdate() { wallet = JsonSerializer.Deserialize<UserWallet>(element.ToString())};
+        }
+
+        private static WSHistoryUpdate ReadHistoryUpdate(JsonElement element)
+        {
+            return new WSHistoryUpdate() { transactions = JsonSerializer.Deserialize<Transaction[]>(element.ToString())};
         }
 
         private static WSStatisticsUpdate ReadStatisticsUpdate(JsonElement element)
