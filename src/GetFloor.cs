@@ -3,8 +3,13 @@ namespace Nasfaq.JSON
     //api/getFloor
     public class GetFloor
     {
+        public GetFloor_Floor floor { get; set; }
+    }
+
+    public class GetFloor_Floor
+    {
         public int postCount { get; set; }
-        public Floor_Room rooms { get; set; }
+        public Floor_Room[] rooms { get; set; }
     }
 
     public class Floor_Room

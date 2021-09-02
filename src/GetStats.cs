@@ -5,8 +5,14 @@ namespace Nasfaq.JSON
     //api/getStats
     public class GetStats
     {   
-        Dictionary<string, Stats> stats { get; set; }
-        Stats_CoinHistory[] coinHistory { get; set; }
+        public Dictionary<string, Stats> stats { get; set; }
+        public Stats_CoinHistory[] coinHistory { get; set; }
+    }
+
+    public class GetStats_Raw
+    {   
+        public Dictionary<string, Stats> stats { get; set; }
+        public string coinHistory { get; set; }
     }
     
     public class Stats
@@ -23,7 +29,7 @@ namespace Nasfaq.JSON
     {
         public string name { get; set; }
         public string[] labels { get; set; }
-        public int[] data { get; set; }
+        public string[] data { get; set; }
     }
 
     public class Stats_CoinHistory

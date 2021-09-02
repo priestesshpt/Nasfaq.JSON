@@ -11,6 +11,7 @@ namespace Nasfaq.JSON
     public class History
     {
         public long timestamp { get; set; }
+        //only 1000 last entries if not ?full
         public Transaction[] transactions { get; set; }
     }
 }

@@ -6,8 +6,11 @@ namespace Nasfaq.JSON
     public class GetLeaderboard
     {
         public bool success { get; set; } = true;
+        //only if success is false
         public string message { get; set; }
+        //?leaderboard
         public Leaderboard leaderboard { get; set; }
+        //?oshiboard
         public Oshiboard oshiboard { get; set; }
     }
 
