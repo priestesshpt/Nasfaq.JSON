@@ -3,6 +3,11 @@ namespace Nasfaq.JSON
     //api/addRoom
     public class AddRoom
     {
+        public AddRoom()
+        {
+            
+        }
+        
         public AddRoom(string subject, string openingText)
         {
             this.subject = subject;

@@ -3,6 +3,11 @@ namespace Nasfaq.JSON
     //api/trade
     public class Trade
     {
+        public Trade()
+        {
+            
+        }
+
         public Trade(string coin, TradeType type)
         {
             this.orders = new Trade_Coin[] { new Trade_Coin(coin, type) };

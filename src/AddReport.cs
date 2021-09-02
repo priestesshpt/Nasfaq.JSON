@@ -3,6 +3,11 @@ namespace Nasfaq.JSON
     //api/addReport
     public class AddReport
     {
+        public AddReport()
+        {
+            
+        }
+        
         public AddReport(int id, string roomId, string text, long timestamp, string username)
         {
             report = new Report()

@@ -3,6 +3,11 @@ namespace Nasfaq.JSON
     //api/buySuperchat
     public class BuySuperchat
     {
+        public BuySuperchat()
+        {
+            
+        }
+        
         public BuySuperchat(double amount, string coin, string message)
         {
             this.amount = amount;
