@@ -13,7 +13,7 @@ namespace Nasfaq.JSON
             this.color = color;
         }
 
-        //"red", "pink", "lime", blue", "purple", "orange", "yellow", "green", "magenta", "gray"
+        //"default", "red", "pink", "lime", blue", "purple", "orange", "yellow", "green", "magenta", "gray"
         public string color { get; set; }
     }
 }

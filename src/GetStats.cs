@@ -29,7 +29,7 @@ namespace Nasfaq.JSON
     {
         public string name { get; set; }
         public string[] labels { get; set; }
-        public string[] data { get; set; }
+        public int[] data { get; set; }
     }
 
     public class Stats_CoinHistory
