@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.IO;
 
@@ -7,6 +8,12 @@ namespace Nasfaq.JSON
 {
     public static class WebsocketReader
     {
+        public static string ReadEventName(string content)
+        {
+            JsonDocument jsonDocument = JsonDocument.Parse(content);
+            return jsonDocument.RootElement[0].GetString();
+        }
+
         public static IWebsocketData Read(string content)
         {
             JsonDocument jsonDocument = JsonDocument.Parse(content);
@@ -25,7 +32,7 @@ namespace Nasfaq.JSON
                     case "leaderboardUpdate": return ReadStandard<WSLeaderboardUpdate>(jsonElement);
                     case "oshiboardUpdate": return ReadOshiboardUpdate(jsonElement);
                     case "todayPricesUpdate": return ReadStandard<WSTodayPricesUpdate>(jsonElement);
-                    case "transactionUpdate": return ReadStandard<WSTransactionUpdate>(jsonElement);
+                    case "transactionUpdate": return ReadTransactionUpdate(jsonElement);
                     case "marketSwitch": return ReadMarketSwitch(jsonElement);
                     case "superchatUpdate": return ReadStandard<WSSuperChatUpdate>(jsonElement);
                     case "statisticsUpdate": return ReadStatisticsUpdate(jsonElement);
@@ -44,6 +51,36 @@ namespace Nasfaq.JSON
         private static T ReadStandard<T>(JsonElement element) where T : IWebsocketData
         {
             return JsonSerializer.Deserialize<T>(element.ToString());
+        }
+
+        private static WSTransactionUpdate ReadTransactionUpdate(JsonElement element)
+        {
+            WSTransactionUpdate transtionUpdate = new WSTransactionUpdate();
+            transtionUpdate.@event = element.GetProperty("event").GetString();
+            transtionUpdate.transactions = new Transaction[element.GetProperty("transactions").GetArrayLength()];
+            int i = 0;
+            foreach(JsonElement transaction in element.GetProperty("transactions").EnumerateArray())
+            {
+                Transaction trans = new Transaction();
+                trans.coin = transaction.GetProperty("coin").GetString();
+                trans.type = transaction.GetProperty("type").GetInt32();
+                trans.userid = transaction.GetProperty("userid").GetString();
+                trans.timestamp = transaction.GetProperty("timestamp").GetInt64();
+                trans.completed = transaction.GetProperty("completed").GetBoolean();
+                JsonElement price = transaction.GetProperty("price");
+                if(price.ValueKind != JsonValueKind.Null)
+                {
+                    trans.price = price.GetDouble();
+                }
+                transtionUpdate.transactions[i] = trans;
+                i++;
+            }
+            JsonElement wallet = element.GetProperty("wallet");
+            if(wallet.ValueKind != JsonValueKind.Null)
+            {
+                transtionUpdate.wallet = JsonSerializer.Deserialize<UserWallet>(wallet.GetRawText());
+            }
+            return transtionUpdate;
         }
 
         private static WSDividendUpdate ReadDividendUpdate(JsonElement element)

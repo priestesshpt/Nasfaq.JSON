@@ -12,7 +12,7 @@ namespace Nasfaq.JSON
     {
         public double balance { get; set; }
         public Dictionary<string, UserWallet_Coin> coins { get; set; }
-        public string predicted { get; set; }
+        public double predicted { get; set; }
     }
 
     public class UserWallet_Coin

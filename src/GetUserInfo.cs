@@ -15,6 +15,7 @@ namespace Nasfaq.JSON
         public string icon { get; set; }
         public bool admin { get; set; }
         public UserInfo_Settings settings { get; set; }
+        public string color { get; set; }
         public UserInfo_Muted muted { get; set; }
         public Dictionary<string, UserInfo_Item[]> items { get; set; }
     }

@@ -7,6 +7,6 @@ namespace Nasfaq.JSON
         public string userid { get; set; }
         public long timestamp { get; set; }
         public bool completed { get; set; }
-        public float price { get; set; }
+        public double price { get; set; }
     }
 }

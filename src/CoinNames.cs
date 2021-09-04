@@ -2,6 +2,8 @@ namespace Nasfaq.JSON
 {
     public static class CoinName
     {
+        public static readonly string Blank = "blank";
+
         public static readonly string Hololive = "hololive";
 
         public static readonly string Sora = "sora";
@@ -43,10 +45,6 @@ namespace Nasfaq.JSON
         public static readonly string Botan = "botan";
         public static readonly string Polka = "polka";
 
-        public static readonly string Risu = "risu";
-        public static readonly string Moona = "moona";
-        public static readonly string Iofi = "iofi";
-
         public static readonly string Mori = "calliope";
         public static readonly string Kiara = "kiara";
         public static readonly string Ina = "inanis";
@@ -54,6 +52,16 @@ namespace Nasfaq.JSON
         public static readonly string Amelia = "amelia";
 
         public static readonly string IRyS = "irys";
+
+        public static readonly string Sana = "sana";
+        public static readonly string Fauna = "fauna";
+        public static readonly string Kronii = "kronii";
+        public static readonly string Mumei = "mumei";
+        public static readonly string Baelz = "baelz";
+
+        public static readonly string Risu = "risu";
+        public static readonly string Moona = "moona";
+        public static readonly string Iofi = "iofi";
 
         public static readonly string Ollie = "ollie";
         public static readonly string Anya = "melfissa";

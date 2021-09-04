@@ -17,14 +17,15 @@ namespace Nasfaq.JSON
         {
             this.orders = new Trade_Coin[buys.Length + sells.Length];
             int j = 0;
-            for(int i = 0; i < buys.Length; i++)
-            {
-                orders[j] = new Trade_Coin(buys[i], TradeType.Buy);
-                j++;
-            }
+            //important to put sells before buys in the trades
             for(int i = 0; i < sells.Length; i++)
             {
                 orders[j] = new Trade_Coin(sells[i], TradeType.Sell);
+                j++;
+            }
+            for(int i = 0; i < buys.Length; i++)
+            {
+                orders[j] = new Trade_Coin(buys[i], TradeType.Buy);
                 j++;
             }
         }
