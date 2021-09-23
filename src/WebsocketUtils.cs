@@ -28,6 +28,7 @@ namespace Nasfaq.JSON
                     case "dividendUpdate": return ReadDividendUpdate(jsonElement);
                     case "floorUpdate": return ReadStandard<WSFloorUpdate>(jsonElement);
                     case "gachaUpdate": return ReadStandard<WSGachaUpdate>(jsonElement);
+                    case "brokerFeeUpdate": return ReadStandard<WSBrokerFeeUpdate>(jsonElement);
                     case "historyUpdate": return ReadHistoryUpdate(jsonElement);
                     case "leaderboardUpdate": return ReadStandard<WSLeaderboardUpdate>(jsonElement);
                     case "oshiboardUpdate": return ReadOshiboardUpdate(jsonElement);
@@ -37,6 +38,7 @@ namespace Nasfaq.JSON
                     case "superchatUpdate": return ReadStandard<WSSuperChatUpdate>(jsonElement);
                     case "statisticsUpdate": return ReadStatisticsUpdate(jsonElement);
                     case "coinHistoryUpdate": return ReadStandard<WSCoinHistoryUpdate>(jsonElement);
+                    case "creditsUpdate": return ReadStandard<WSCreditsUpdate>(jsonElement);
                 }
                 throw new KeyNotFoundException($"Websocket '{websocketName}' not handled, data: {jsonElement.ToString()}");
             }
