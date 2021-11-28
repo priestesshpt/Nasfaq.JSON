@@ -39,6 +39,7 @@ namespace Nasfaq.JSON
                     case "statisticsUpdate": return ReadStatisticsUpdate(jsonElement);
                     case "coinHistoryUpdate": return ReadStandard<WSCoinHistoryUpdate>(jsonElement);
                     case "creditsUpdate": return ReadStandard<WSCreditsUpdate>(jsonElement);
+                    case "auctionUpdate": return ReadStandard<WSAuctionUpdate>(jsonElement);
                 }
                 throw new KeyNotFoundException($"Websocket '{websocketName}' not handled, data: {jsonElement.ToString()}");
             }
@@ -67,6 +68,7 @@ namespace Nasfaq.JSON
                 trans.coin = transaction.GetProperty("coin").GetString();
                 trans.type = transaction.GetProperty("type").GetInt32();
                 trans.userid = transaction.GetProperty("userid").GetString();
+                trans.quantity = transaction.GetProperty("quantity").GetInt32();
                 trans.timestamp = transaction.GetProperty("timestamp").GetInt64();
                 trans.completed = transaction.GetProperty("completed").GetBoolean();
                 JsonElement price = transaction.GetProperty("price");
